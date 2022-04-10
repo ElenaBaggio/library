@@ -40,6 +40,12 @@ alter table books
 add book_name varchar(100) not null 
 after id;
 
+-- default number of times to 0
+alter table books
+modify number_of_times_checked_out int default 0;
+alter table books
+modify number_of_current_reservations int default 0;
+
 insert into books value(1, "Brothers Grimm", "Children tales", 1970, 3, 0, "Children section");
 insert into books value(2, "The Guilty Feminist", "Deborah Frances-White", "Feminism", 2019, 200, 100, "Activism");
 insert into books value(3, "Vampire Diaries", "S. Myer", "Teen fiction", 2022, 50, 10, "Teen section");
@@ -106,6 +112,7 @@ foreign key (customer_id) references customers(id),
 foreign key (checkout_id) references checkout(id));
 
 insert into fines values(1, 2, 3, 2, 1.00);
+insert into fines values(2, 3, 3, 3, 1.50);
 
 
 create table reservation(
@@ -198,3 +205,12 @@ select * from reservation;
 select * from recently_returned;
 select * from events_timetable;
 select * from customer_attendance;
+
+-- access 
+create user 'librarian'@'localhost' identified by 'password';
+grant select on library.* to 'librarian'@'localhost';
+grant insert on library.books to 'librarian'@'localhost';
+ 
+
+
+
