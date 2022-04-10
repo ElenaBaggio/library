@@ -211,6 +211,10 @@ create user 'librarian'@'localhost' identified by 'password';
 grant select on library.* to 'librarian'@'localhost';
 grant insert on library.books to 'librarian'@'localhost';
  
+create user 'customer'@'localhost' identified by 'password';
+grant select on library.* to 'customer'@'localhost';
+
+ 
 
 
 
